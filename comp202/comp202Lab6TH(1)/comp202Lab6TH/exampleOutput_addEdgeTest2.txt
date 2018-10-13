@@ -1,0 +1,4 @@
+Processing: addEdgeTest2.txt
+Adding edge x1 x2 1
+Adding edge x2 x1 1
+Moving on to the next file since a problem is detected in graph creation

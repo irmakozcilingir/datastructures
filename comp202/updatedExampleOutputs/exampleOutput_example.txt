@@ -1,0 +1,72 @@
+Processing: example.txt
+Adding vertex i1 LinFunc
+Adding vertex i2 ReLU
+Adding vertex i3 LinFunc
+Adding vertex m ReLU
+Adding vertex o1 LinFunc
+Adding vertex o2 Sigmoid
+Adding edge i1 m -0.1
+Adding edge i1 o1 1.5
+Adding edge m o1 -0.5
+Adding edge i1 o2 0.1
+Adding edge i2 o2 0.3
+Adding edge i3 o2 -0.2
+Adding edge bias o1 -1
+Adding data for input: i1
+Adding data for input: i2
+Adding data for input: i3
+Adding data for output: o1
+Adding data for output: o2
+Input data:
+(i1, 2.0)(i2, -1.0)(i3, -1.0)
+Output data:
+(o1, -0.5)(o2, 0.5)
+Before training
+bias
+<bias, o1>, -1.0
+<bias, o2>, 1.0
+<bias, m>, 1.0
+i1
+<i1, o1>, 1.5
+<i1, o2>, 0.1
+<i1, m>, -0.1
+i2
+<i2, o2>, 0.3
+i3
+<i3, o2>, -0.2
+m
+<m, o1>, -0.5
+o1
+o2
+Is the graph cyclic: false
+Topologically sorted vertices: 
+( i3, i2, i1, bias, m, o2, o1, )
+Outputs: 
+For the input: 
+(i1, 2.0)(i2, -1.0)(i3, -1.0)
+The output is: 
+(o1, 1.6)(o2, 0.8021838885585817)
+Training finished with error: 9.832976074520391E-4
+After training
+bias
+<bias, o1>, -1.2588801250555672
+<bias, o2>, 0.7675763486561201
+<bias, m>, 1.1518858381890684
+i1
+<i1, o1>, 0.982239749888865
+<i1, o2>, -0.3648473026877576
+<i1, m>, 0.20377167637813728
+i2
+<i2, o2>, 0.3
+i3
+<i3, o2>, 0.03242365134387874
+m
+<m, o1>, -0.7731029928914663
+o1
+o2
+Outputs: 
+For the input: 
+(i1, 2.0)(i2, -1.0)(i3, -1.0)
+The output is: 
+(o1, -0.5)(o2, 0.501364519596676)
+

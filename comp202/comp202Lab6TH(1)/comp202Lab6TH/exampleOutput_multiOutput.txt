@@ -1,0 +1,100 @@
+Processing: multiOutput.txt
+Adding vertex d Sigmoid
+Adding vertex e Sigmoid
+Adding edge a d -0.1
+Adding edge a f 0.1
+Adding edge b d -0.2
+Adding edge b e 0.2
+Adding edge c e -1.2
+Adding edge c g -2.
+Adding edge d f 2.
+Adding edge d g 1.2
+Adding edge e f 0.5
+Adding data for input: a
+Adding data for input: b
+Adding data for input: c
+Adding data for output: f
+Adding data for output: g
+Input data:
+(a, 1.0)(b, -1.0)(c, 0.5)
+(a, 2.0)(b, 2.0)(c, -1.0)
+(a, -1.0)(b, 1.0)(c, -0.2)
+Output data:
+(f, 1.0)(g, -0.7)
+(f, -1.0)(g, 0.3)
+(f, 3.0)(g, -0.4)
+Before training
+a
+<a, d>, -0.1
+<a, f>, 0.1
+b
+<b, d>, -0.2
+<b, e>, 0.2
+bias
+<bias, d>, 1.0
+<bias, e>, 1.0
+<bias, f>, 1.0
+<bias, g>, 1.0
+c
+<c, e>, -1.2
+<c, g>, -2.0
+d
+<d, f>, 2.0
+<d, g>, 1.2
+e
+<e, f>, 0.5
+f
+g
+Is the graph cyclic: false
+Topologically sorted vertices: 
+( bias, c, b, e, a, d, g, f, )
+Outputs: 
+For the input: 
+(a, 1.0)(b, -1.0)(c, 0.5)
+The output is: 
+(f, 2.875437209846474)(g, 0.9003121267141412)
+For the input: 
+(a, 2.0)(b, 2.0)(c, -1.0)
+The output is: 
+(f, 2.8628061100532305)(g, 3.7184251921349425)
+For the input: 
+(a, -1.0)(b, 1.0)(c, -0.2)
+The output is: 
+(f, 2.726126330969274)(g, 2.2531394031500045)
+Training finished with error: 9.921166954106196E-4
+After training
+a
+<a, d>, 0.021934970060340727
+<a, f>, -1.2702440997569178
+b
+<b, d>, -0.9624628410885763
+<b, e>, 0.22849748566866968
+bias
+<bias, d>, 0.3194630295618567
+<bias, e>, 0.9722068948424059
+<bias, f>, 0.7633757890545048
+<bias, g>, -0.9533769917727277
+c
+<c, e>, -1.2124852854194903
+<c, g>, -1.077209291176468
+d
+<d, f>, 1.5456865100339718
+<d, g>, 1.005528658846809
+e
+<e, f>, 0.5453174777150029
+f
+g
+Outputs: 
+For the input: 
+(a, 1.0)(b, -1.0)(c, 0.5)
+The output is: 
+(f, 1.0001594988669649)(g, -0.7011493962889543)
+For the input: 
+(a, 2.0)(b, 2.0)(c, -1.0)
+The output is: 
+(f, -1.0000100945203265)(g, 0.29820929151747166)
+For the input: 
+(a, -1.0)(b, 1.0)(c, -0.2)
+The output is: 
+(f, 2.9997189501699415)(g, -0.39642547024005204)
+

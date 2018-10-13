@@ -1,0 +1,342 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 import java.util.ArrayList;\
+import java.util.LinkedList;\
+import java.util.List;\
+import java.util.Queue;\
+\
+public class ArrayBasedHeap<Key extends Comparable <Key>, Value> \{\
+	protected class Node \
+	\{\
+		Key k;\
+		Value v;\
+\
+		Node(Key key, Value value, int index)\
+		\{\
+			k = key;\
+			v = value;\
+		\}\
+\
+		Key getKey()\
+		\{\
+			return k;\
+		\}\
+\
+		Value getValue()\
+		\{\
+			return v;\
+		\}\
+\
+		public String toString()\
+		\{\
+			return "(" + k.toString() + ", " + v.toString() + ")";\
+		\}\
+	\}\
+\
+	protected ArrayList<Node> nodes;\
+	boolean isMin;\
+\
+	//Ignore these initially!\
+	interface VoidTreeVisit \{\
+		void visit(int nodeIndex, Object[] args);   \
+	\}\
+\
+	VoidTreeVisit printNode;\
+	VoidTreeVisit printKey;\
+	VoidTreeVisit printValue;\
+\
+	//Is this a minimum heap or a maximum heap?\
+	ArrayBasedHeap(boolean isMin)\
+	\{\
+		this.isMin = isMin;\
+		nodes = new ArrayList<Node>();\
+		printNode  = (i, args)-> System.out.println(nodes.get(i).toString());\
+		printKey   = (i, args)-> System.out.println(getKey(i).toString());\
+		printValue = (i, args)-> System.out.println(getValue(i).toString());\
+	\}\
+\
+	//Default minimum\
+	ArrayBasedHeap()\
+	\{\
+		this(true);\
+	\}\
+\
+	//Check if the heap property is satisfied\
+	public boolean isHeap()\
+	\{\
+		//Fill yourself\
+		if(isMin)\
+			return false;\
+		else\
+			return false;\
+	\}\
+\
+	// helper method for remove, upheap and downheap\
+	public void swap(int i, int j)\{\
+		Node temp = nodes.get(i);\
+		nodes.set(i, nodes.get(j));\
+		nodes.set(j, temp);\
+	\}\
+\
+	// Insert a value with the given key.\
+	// Return true if successful, false otherwise\
+	public boolean put(Key key, Value value)\
+	\{\
+		//Fill yourself\
+		//1) Add\
+		\
+		Node newest = new Node(key,value,nodes.size());\
+		nodes.add(newest);\
+		//2) Upheap\
+		upheap(nodes.size()-1);\
+		return true;\
+	\}\
+\
+	// Remove the next element\
+	public Value remove()\
+	\{\
+		//Fill yourself\
+		//1) Remove\
+		if(nodes.isEmpty())\{\
+			return null;\
+		\}else\{\
+			Node n = nodes.get(0);\
+			swap(0,nodes.size()-1);\
+			nodes.remove(nodes.size()-1);\
+			//2) Downheap\
+			downheap(0);\
+			return n.v;\
+		\}\
+	\}\
+\
+	//peek, no remove\
+	public Value get()\
+	\{\
+		return nodes.get(0).v;\
+	\}\
+\
+	// Some more helper methods for upheap and downheap\
+	private int parent(int i)\{\
+		return (i-1)/2;\
+	\}\
+	private int left(int i)\{\
+		return (2*i)+1;\
+	\}\
+	private int right(int i)\{\
+		return (2*i)+2;\
+	\}\
+	private boolean hasLeft(int j)\{\
+		return left(j)<nodes.size();\
+	\}\
+	private boolean hasRight(int j)\{\
+		return right(j)<nodes.size();\
+	\}\
+\
+	//Implement the upheap method, \
+	private void upheap(int nodeIndex)\
+	\{\
+		//Fill yourself\
+		/*if(isMin)\
+			return;\
+		else\
+			return;*/\
+		while(nodeIndex>0)\{\
+			int p = parent(nodeIndex);\
+			if((nodes.get(nodeIndex).k.compareTo(nodes.get(p).k)) >= 0)\{\
+				break;\
+			\}else\{\
+				swap(nodeIndex, p);\
+				nodeIndex = p;\
+			\}\
+		\}\
+	\}\
+\
+	private void downheap(int nodeIndex)\
+	\{\
+		//Fill yourself\
+//		if(isMin)\
+//			return;\
+//		else\
+//			return;\
+		while(hasLeft(nodeIndex))\{\
+			int leftIndex = left(nodeIndex);\
+			int small = leftIndex;\
+			if(hasRight(nodeIndex))\{\
+				int rightIndex = right(nodeIndex);\
+				if((nodes.get(leftIndex).k.compareTo(nodes.get(rightIndex).k) >= 0))\{\
+					small = rightIndex;\
+				\}\
+			\}\
+			if((nodes.get(small).k.compareTo(nodes.get(nodeIndex).k)) >0)\
+				break;\
+			swap(nodeIndex, small);\
+			nodeIndex = small;\
+		\}\
+	\}\
+\
+	//The rest of the methods are not directly related to heaps but more to complete binary trees \
+\
+	//Get the key of the node with the given index\
+	public Value getValue(int i)\
+	\{\
+		//Fill yourself\
+		return nodes.get(i).v;\
+	\}\
+\
+	//Add the values of all the nodes with the same key\
+	public void getValue(Key key, List<Value> listOfValues)\
+	\{\
+		//Fill yourself, bonus points if you use lambas!\
+		return;\
+	\}\
+\
+	//Get the value of the node with the given index\
+	public Key getKey(int i)\
+	\{\
+		//Fill yourself\
+		return nodes.get(i).k;\
+	\}\
+\
+	//Methods below do not need to be filled but they show you examples on how to do traversals and use lambdas\
+	public void inOrderTraversal(VoidTreeVisit vtv, Object [] args)\
+	\{\
+		_inOrderTraversal(0,vtv,args);\
+	\}\
+\
+	public void inOrderTraversal(VoidTreeVisit vtv)\
+	\{\
+		_inOrderTraversal(0,vtv,null);\
+	\}\
+\
+	public void preOrderTraversal(VoidTreeVisit vtv, Object [] args)\
+	\{\
+		_preOrderTraversal(0,vtv,args);\
+	\}\
+\
+	public void preOrderTraversal(VoidTreeVisit vtv)\
+	\{\
+		_preOrderTraversal(0,vtv,null);\
+	\}\
+\
+	public void postOrderTraversal(VoidTreeVisit vtv, Object [] args)\
+	\{\
+		_postOrderTraversal(0,vtv,args);\
+	\}\
+\
+	public void postOrderTraversal(VoidTreeVisit vtv)\
+	\{\
+		_postOrderTraversal(0,vtv,null);\
+	\}\
+\
+	private void _inOrderTraversal(int i, VoidTreeVisit vtv, Object [] args)\
+	\{\
+		if(i >= nodes.size())\
+			return;\
+		_inOrderTraversal(2*i+1, vtv, args);\
+		vtv.visit(i,args);\
+		_inOrderTraversal(2*i+2, vtv, args);\
+	\}\
+\
+	private void _preOrderTraversal(int i, VoidTreeVisit vtv, Object [] args)\
+	\{\
+		if(i >= nodes.size())\
+			return;\
+		vtv.visit(i,args);\
+		_preOrderTraversal(2*i+1, vtv, args);\
+		_preOrderTraversal(2*i+2, vtv, args);\
+	\}\
+\
+	private void _postOrderTraversal(int i, VoidTreeVisit vtv, Object [] args)\
+	\{\
+		if(i >= nodes.size())\
+			return;\
+		_postOrderTraversal(2*i+1, vtv, args);\
+		_postOrderTraversal(2*i+2, vtv, args);\
+		vtv.visit(i,args);\
+	\}\
+\
+	public void levelOrderTraversal(VoidTreeVisit vtv, Object [] args)\
+	\{\
+		_levelOrderTraversal(0,vtv,args);\
+	\}\
+\
+	public void ezLevelOrderTraversal(VoidTreeVisit vtv, Object [] args)\
+	\{\
+		for(int i = 0; i < nodes.size(); i++)\
+			vtv.visit(i,args);\
+	\}\
+\
+	public void ezLevelOrderTraversal(VoidTreeVisit vtv)\
+	\{\
+		ezLevelOrderTraversal(vtv,null);\
+	\}\
+\
+	public void levelOrderTraversal(VoidTreeVisit vtv)\
+	\{\
+		_levelOrderTraversal(0,vtv,null);\
+	\}\
+\
+	private void _levelOrderTraversal(int i, VoidTreeVisit vtv, Object [] args)\
+	\{\
+		Queue<Integer> queue = new LinkedList<Integer>() ;\
+		if(i >= nodes.size())\
+			return;\
+		queue.clear();\
+		queue.add(i);\
+		while(!queue.isEmpty())\{\
+			int j = queue.remove();\
+			if(j >= nodes.size())\
+				continue;\
+			vtv.visit(j,args);\
+			queue.add(2*j+1);\
+			queue.add(2*j+2);\
+		\}\
+	\}\
+\
+	//Return a string of nodes pairs using in-order traversal of the tree. Feel free to put whatever delimiter you want between the pair \
+	public void printTreePreOrder()\
+	\{\
+		preOrderTraversal(printNode);\
+	\}\
+\
+	public void printTreeLevelOrder()\
+	\{\
+		ezLevelOrderTraversal(printNode);\
+	\}\
+\
+	public static void main(String [] args)\
+	\{\
+		//Do more testing! This does not cover all the possible removal cases!\
+		ArrayList<String> listOfValues = new ArrayList<String>();\
+		ArrayBasedHeap<Integer, String> heap = new ArrayBasedHeap<Integer, String>(true);\
+		heap.put(1, "Hello");\
+		heap.put(2, "world!");\
+		heap.put(-1, "How");\
+		heap.put(1, "are");\
+		heap.put(3, "you?");\
+		heap.put(5, "Comp202");\
+		heap.put(12, "is fun");\
+		heap.put(-2, "but we");\
+		heap.put(7, "don't like");\
+		heap.put(-3, "to attend");\
+		heap.put(9, "PSes");\
+		heap.put(5, "where we");\
+		heap.put(3, "can learn");\
+		heap.put(4, "implementations!");\
+		heap.printTreeLevelOrder();\
+		System.out.println();\
+		heap.getValue(1,listOfValues);\
+		for(String val: listOfValues)\
+			System.out.println(val);\
+		System.out.println();\
+		heap.remove();\
+		heap.printTreeLevelOrder();\
+\
+	\}\
+\}\
+}

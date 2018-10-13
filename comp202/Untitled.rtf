@@ -1,0 +1,131 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf820
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red63\green127\blue95;\red127\green159\blue191;}
+{\*\expandedcolortbl;;\csgenericrgb\c24706\c49804\c37255;\csgenericrgb\c49804\c62353\c74902;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww6100\viewh16000\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 public HashMap<String, Double> calculate(HashMap<String, Double> inputs) \{\
+    // Refresh is already called for you\
+    refresh();\
+\
+    //1. Step, mapping\
+    for(Vertex v : vertices.values())\{\
+    	if(inputs.containsKey(v))\{\
+    		v.incomingSum = inputs.get(v);\
+    	\}\
+    \}\
+    \
+    //2. and 3. Step, remaining vertices\
+    double incomingSum = 0;\
+    double output = 0;\
+    boolean isEmpty = false;\
+    Edge e = null;\
+    \
+    HashMap<String,Double> outMap = new HashMap<String,Double>();\
+\
+    ArrayList<Vertex> list = topologicalSort();\
+    for(int i=0; i<list.size(); i++)\{\
+    	Vertex temp = list.get(i);\
+    	List<Vertex> outNeig = temp.getOutgoingNeighbors();\
+    	\
+    	if(outNeig.isEmpty())\
+    		isEmpty = true;\
+    	\
+    	if(inputVertices.contains(temp))\{\
+    		output = temp.getOutput();\
+    		outMap.put(temp.name, output);\
+\
+    		//update the weights of outgoing edges\
+    		if(!isEmpty)\{\
+    			for(int j=0; j<outNeig.size(); j++)\{\
+    				e = temp.outgoingEdges.get(outNeig.get(i));\
+    				e.edgeWeight = e.edgeWeight * output;\
+    			\}\
+    		\}\
+    	\} else \{\
+    		List<Vertex> inNeig = temp.getIncomingNeighbors();\
+    		\
+    		for(int k=0; k<inNeig.size(); k++)\{\
+    			e = temp.incomingEdges.get(inNeig.get(i));\
+    			incomingSum = incomingSum + e.edgeWeight;\
+    		\}\
+    		\
+    		temp.incomingSum = incomingSum;\
+    		output = temp.getOutput();\
+    		outMap.put(temp.name, output);\
+    		\
+    		//update the weights of outgoing edges\
+    		if(!isEmpty)\{\
+    			for(int j=0; j<outNeig.size(); j++)\{\
+    				e = temp.outgoingEdges.get(outNeig.get(i));\
+    				e.edgeWeight = e.edgeWeight * output;\
+    			\}\
+    		\}\
+    	\}\
+    \}\
+\
+\
+    return outMap;\
+  \}\
+\
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs22 \cf0 		\cf2 // \cf3 TODO\cf2 : Implement this yourself\cf0 \
+		\cf2 //ArrayList<Edge> added = new ArrayList<>();\cf0 \
+\
+		\cf2 //		ArrayList<Vertex> l = new ArrayList<>();\cf0 \
+		\cf2 //		ArrayList<Vertex> s = new ArrayList<>();\cf0 \
+		\cf2 //		for (Vertex vertex : vertices.values()) \{\cf0 \
+		\cf2 //			if (vertex.incomingEdges == null) \{\cf0 \
+		\cf2 //				s.add(vertex);\cf0 \
+		\cf2 //			\}\cf0 \
+		\cf2 //		\}\cf0 \
+		\cf2 //		while (!s.isEmpty()) \{\cf0 \
+		\cf2 //			Vertex n = s.remove(0);\cf0 \
+		\cf2 //			l.add(n);\cf0 \
+		\cf2 //			for (Vertex m : vertices.values()) \{\cf0 \
+		\cf2 //				if (n.outgoingEdges.containsKey(m)) \{\cf0 \
+		\cf2 //					Edge e = n.outgoingEdges.get(m);\cf0 \
+		\cf2 //					//					if (!added.contains(e)) \{\cf0 \
+		\cf2 //					//						added.add(e);\cf0 \
+		\cf2 //					//						if (m.incomingEdges == null || added.contains(m.incomingEdges)) \{\cf0 \
+		\cf2 //					//							s.add(m);\cf0 \
+		\cf2 //					//						\}\cf0 \
+		\cf2 //					//					\}\cf0 \
+		\cf2 //					n.outgoingEdges.remove(e);\cf0 \
+		\cf2 //					if (m.incomingEdges == null) \{\cf0 \
+		\cf2 //						s.add(m);\cf0 \
+		\cf2 //					\}\cf0 \
+		\cf2 //				\}\cf0 \
+		\cf2 //			\}\cf0 \
+		\cf2 //		\}\cf0 \
+		\cf2 //		for (Vertex vertex : vertices.values()) \{\cf0 \
+		\cf2 //			if (vertex.outgoingEdges != null || vertex.incomingEdges != null) \{\cf0 \
+		\cf2 //				return null;              //cyclic\cf0 \
+		\cf2 //			\}\cf0 \
+		\cf2 //			//			if (!added.contains(vertex.incomingEdges) || !added.contains(vertex.outgoingEdges)) \{\cf0 \
+		\cf2 //			//				return null;              //cyclic\cf0 \
+		\cf2 //			//			\}\cf0 \
+		\cf2 //		\}\cf0 \
+		\cf2 //		return l;\
+\
+\
+\
+//		HashMap<String, Double> h = new HashMap<>();\cf0 \
+		\cf2 //		\cf0 \
+		\cf2 //		ArrayList<Vertex> list = topologicalSort();\cf0 \
+		\cf2 //		\cf0 \
+		\cf2 //		for (Vertex s : list) \{\cf0 \
+		\cf2 //			double i=0;\cf0 \
+		\cf2 //			for (Edge e : vertices.get(s).incomingEdges.values()) \{\cf0 \
+		\cf2 //				i = i + e.getWeight()*e.startVertex.incomingSum;\cf0 \
+		\cf2 //				vertices.get(s).incomingSum = i;\cf0 \
+		\cf2 //			\}\cf0 \
+		\cf2 //			h.put(s.name, s.getOutput());\cf0 \
+		\cf2 //\cf0 \
+		\cf2 //		\}\cf0 \
+		\cf2 //		return h;}

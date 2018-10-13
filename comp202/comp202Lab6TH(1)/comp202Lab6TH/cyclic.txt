@@ -1,0 +1,22 @@
+Vertices
+a1 Sigmoid
+a2 Sigmoid
+a3 Sigmoid
+
+Edges
+x1 a1 20
+x2 a1 20
+x1 a2 -20
+x2 a2 -20
+a1 a3 20
+a2 a1 10
+a3 a2 20
+
+Inputs
+x1 1
+x2 1
+
+Outputs
+a3 1
+
+

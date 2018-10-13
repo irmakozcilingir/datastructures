@@ -1,0 +1,37 @@
+Processing: cyclic.txt
+Adding vertex a1 Sigmoid
+Adding vertex a2 Sigmoid
+Adding vertex a3 Sigmoid
+Adding edge x1 a1 20
+Adding edge x2 a1 20
+Adding edge x1 a2 -20
+Adding edge x2 a2 -20
+Adding edge a1 a3 20
+Adding edge a2 a1 10
+Adding edge a3 a2 20
+Adding data for input: x1
+Adding data for input: x2
+Adding data for output: a3
+Input data:
+(x1, 1.0)(x2, 1.0)
+Output data:
+(a3, 1.0)
+Before training
+a1
+<a1, a3>, 20.0
+a2
+<a2, a1>, 10.0
+a3
+<a3, a2>, 20.0
+bias
+<bias, a1>, 1.0
+<bias, a2>, 1.0
+<bias, a3>, 1.0
+x1
+<x1, a1>, 20.0
+<x1, a2>, -20.0
+x2
+<x2, a1>, 20.0
+<x2, a2>, -20.0
+Is the graph cyclic: true
+Moving on to the next file since a cycle is detected

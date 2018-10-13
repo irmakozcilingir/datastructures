@@ -1,0 +1,102 @@
+Processing: impossible.txt
+Adding vertex d Sigmoid
+Adding vertex e Sigmoid
+Adding vertex f ReLU
+Adding vertex g ReLU
+Adding edge a d -0.1
+Adding edge a f 0.1
+Adding edge b d -0.2
+Adding edge b e 0.2
+Adding edge c e -1.2
+Adding edge c g -2.
+Adding edge d f 2.
+Adding edge d g 1.2
+Adding edge e f 0.5
+Adding data for input: a
+Adding data for input: b
+Adding data for input: c
+Adding data for output: f
+Adding data for output: g
+Input data:
+(a, 1.0)(b, -1.0)(c, 0.5)
+(a, 2.0)(b, 2.0)(c, -1.0)
+(a, -1.0)(b, 1.0)(c, -0.2)
+Output data:
+(f, 1.0)(g, -0.7)
+(f, -1.0)(g, 0.3)
+(f, 3.0)(g, -0.4)
+Before training
+a
+<a, d>, -0.1
+<a, f>, 0.1
+b
+<b, d>, -0.2
+<b, e>, 0.2
+bias
+<bias, d>, 1.0
+<bias, e>, 1.0
+<bias, f>, 1.0
+<bias, g>, 1.0
+c
+<c, e>, -1.2
+<c, g>, -2.0
+d
+<d, f>, 2.0
+<d, g>, 1.2
+e
+<e, f>, 0.5
+f
+g
+Is the graph cyclic: false
+Topologically sorted vertices: 
+( bias, c, b, e, a, d, g, f, )
+Outputs: 
+For the input: 
+(a, 1.0)(b, -1.0)(c, 0.5)
+The output is: 
+(f, 2.875437209846474)(g, 0.9003121267141412)
+For the input: 
+(a, 2.0)(b, 2.0)(c, -1.0)
+The output is: 
+(f, 2.8628061100532305)(g, 3.7184251921349425)
+For the input: 
+(a, -1.0)(b, 1.0)(c, -0.2)
+The output is: 
+(f, 2.726126330969274)(g, 2.2531394031500045)
+Training finished with error: 0.5244044240850757
+After training
+a
+<a, d>, -0.6983902051070979
+<a, f>, -0.9173452369243718
+b
+<b, d>, -0.5830677220916989
+<b, e>, 0.21388638908414023
+bias
+<bias, d>, 0.5864758903990265
+<bias, e>, 0.9785011963892835
+<bias, f>, 0.6606745480653828
+<bias, g>, -0.755859858652837
+c
+<c, e>, -1.2045878929441718
+<c, g>, -1.004639719274292
+d
+<d, f>, 1.8131242982102642
+<d, g>, 0.4208761107297382
+e
+<e, f>, 0.2597794357677156
+f
+g
+Outputs: 
+For the input: 
+(a, 1.0)(b, -1.0)(c, 0.5)
+The output is: 
+(f, 0.9999999999999994)(g, 0.0)
+For the input: 
+(a, 2.0)(b, 2.0)(c, -1.0)
+The output is: 
+(f, 0.0)(g, 0.30000000000000104)
+For the input: 
+(a, -1.0)(b, 1.0)(c, -0.2)
+The output is: 
+(f, 3.0)(g, 0.0)
+

@@ -1,0 +1,154 @@
+import java.util.Iterator;
+import java.util.LinkedList;
+
+public class BinaryTree<Key extends Comparable <Key>, Value> {
+  Node root;
+  
+  class Node {
+    Key k;
+    Value v;
+    Node leftChild;
+    Node rightChild;
+    Node parent;
+    
+    public Node(Key key, Value value, Node parentNode) {
+    	k = key;
+    	v = value;
+    	leftChild = null;
+    	rightChild = null;
+    	parent = parentNode;
+    }
+    
+    public Node leftChild() {
+    	return leftChild;
+    }
+    
+    public Node rightChild() {
+    	return rightChild;
+    }
+    
+    public Node getParent() {
+    	return parent;
+    }
+  }
+  
+  public BinaryTree() {
+	  
+  }
+  
+  // Insert a value with the given key
+  public void put(Key key, Value value)
+  {
+	  if(root == null) {
+		  root = new Node(key, value, null);
+	  } else {
+		  Node parentNode = getParentNode(key);
+		  Node newNode = new Node(key, value, parentNode);
+	//	  System.out.println(parentNode.k);
+		  if(compare(key, parentNode.k) < 0) {
+			  parentNode.leftChild = newNode;
+		  } else if(compare(key, parentNode.k) > 0) {
+			  parentNode.rightChild = newNode;
+		  } else {
+			  throw new IllegalArgumentException("Key is already exists");
+		  }
+	  }
+  }
+  
+  //Get the value of the given key or return null if no such key exists
+  public Value get(Key key)
+  {
+	  Node currentNode = root;
+	  Value result = null;
+	  while(true) {
+		  if(currentNode == null) {
+			  break;
+		  } else if(compare(key, currentNode.k) < 0) {
+			  currentNode = currentNode.leftChild();
+		  } else if(compare(key, currentNode.k) > 0) {
+			  currentNode = currentNode.rightChild();
+		  } else {
+			  result = currentNode.v;
+			  break;
+		  }
+	  }
+	  return result;
+    
+  }
+  
+  //Update the value of given key and return the previous key
+  public Value update(Key key, Value value)
+  {
+    //Fill yourself
+    return null;
+  }
+  
+  //Return the values along the path (represented by a linked list) to get to the given key. If no such key is found, still return the path you have followed.
+  public LinkedList<Value> getPath(Key key)
+  {
+	  Node currentNode = root;
+	  LinkedList<Value> result = new LinkedList<Value>();
+	  while(true) {
+		  if(currentNode == null) {
+			  break;
+		  } else if(compare(key, currentNode.k) < 0) {
+			  result.add(currentNode.v);
+			  currentNode = currentNode.leftChild();
+		  } else if(compare(key, currentNode.k) > 0) {
+			  result.add(currentNode.v);
+			  currentNode = currentNode.rightChild();
+		  } else {
+			  result.add(currentNode.v);
+			  break;
+		  }
+	  }
+	  return result;
+  }
+  
+  public Node getParentNode(Key key) {
+	  Node currentNode = root;
+	  while(true) {
+		  if(currentNode == null) {
+			  break;
+		  } else if(compare(key, currentNode.k) < 0 && currentNode.leftChild != null) {
+			  currentNode = currentNode.leftChild();
+		  } else if(compare(key, currentNode.k) > 0 && currentNode.rightChild != null) {
+			  currentNode = currentNode.rightChild();
+		  } else {
+			  break;
+		  }
+	  }
+	  return currentNode;
+	  
+
+  }
+  
+  //Overwrite all the values of the visited nodes to get to key, including the node with the given key
+  public void overwritePath(Key key, Value fillValue)
+  {
+	  Node currentNode = root;
+	  while(true) {
+		  if(currentNode == null) {
+			  break;
+		  } else if(compare(key, currentNode.k) < 0 && currentNode.leftChild != null) {
+			  currentNode = currentNode.leftChild();
+		  } else if(compare(key, currentNode.k) > 0 && currentNode.rightChild != null) {
+			  currentNode = currentNode.rightChild();
+		  } else {
+			  break;
+		  }
+		  currentNode.v = fillValue;
+	  }
+  }
+  
+  //Return a string of (key,value) pairs using in-order traversal of the tree. Feel free to put whatever delimiter you want between the pair 
+  public String toString()
+  {
+	  return root != null ? root.toString() : "[data null]";
+  }
+  
+  public int compare(Key c1, Key c2)
+  {
+      return c1.compareTo(c2);
+  }
+}

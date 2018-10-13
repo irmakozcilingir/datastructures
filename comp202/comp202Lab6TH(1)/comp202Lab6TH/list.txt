@@ -1,0 +1,13 @@
+Vertices
+a1 ReLU
+
+Edges
+x1 a1 1
+a1 a2 1
+
+Inputs
+x1 1
+
+Outputs
+a2 1
+

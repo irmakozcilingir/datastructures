@@ -1,0 +1,13 @@
+Vertices
+x2 Sigmoid
+
+Edges
+x1 x2 1
+x1 x2 1.5
+x2 a1 0.5
+
+Inputs
+x1 1
+
+Outputs
+a1 -1

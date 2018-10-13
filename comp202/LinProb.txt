@@ -1,0 +1,135 @@
+import java.util.Arrays;
+
+public class LinProbHashMap extends AbstractHashMap {
+
+  class Entry
+  {
+    String k;
+    Integer v;
+    
+    Entry(String String, Integer Integer)
+    {
+      k = String;
+      v = Integer;
+    }
+    
+    boolean isDefunct()
+    {
+      return k == null && v == null;
+    }
+    
+    public String toString()
+    {
+      return "(" + k.toString() + ", "+ v.toString() + ")";
+    }
+  }
+  
+  Entry defunct;
+  private Entry[] buckets;
+  
+  LinProbHashMap()
+  {
+    this(7, 0.6f);
+  }
+  
+  LinProbHashMap(int initSize)
+  {
+    this(initSize, 0.6f);
+  }
+  
+  LinProbHashMap(int initSize, float criticalAlpha)
+  {
+    cAlpha = criticalAlpha;
+    defunct = new Entry(null,null);
+    reset(initSize);
+  }
+  
+  void reset(int size)
+  {
+    n = 0;
+    N = size; 
+    buckets = new Entry[N];//java.lang.reflect.Array.newInstance(cl, N); //
+  }
+  
+  @Override
+  public Integer get(String key) {
+	  int hash = hashKeyToGet(key);
+	  return buckets[hash].v;
+  }
+
+  @Override
+  public boolean put(String key, Integer value) {
+	  if(cAlpha > 0.6)
+		  changeArraySize();
+	  
+	  int hash = hashKeyToGet(key);
+	  if(buckets[hash] == null) {
+		  n++;
+		  cAlpha = n/N;
+	  }
+	  buckets[hash] = new Entry(key, value);
+	  return true;
+  }
+
+  @Override
+  public Integer remove(String key) {
+	  int hash = hashKeyToGet(key);
+	  System.out.println(hash);
+	  int res = buckets[hash].v;
+	  buckets[hash] = defunct;
+	  n--;
+	  cAlpha = n/N;
+	  return res;
+  }
+  
+  @Override
+public String toString() {
+	return "LinProbHashMap [buckets=" + Arrays.toString(buckets) + "]";
+}
+
+private void changeArraySize() {
+	  N *= 2;
+	  Entry[] tempBuckets = new Entry[N];
+	  for(int i = 0; i<buckets.length;i++) {
+		  if(buckets[i] != null) {
+			  int hash = hashKey(buckets[i].k, tempBuckets);
+			  tempBuckets[hash] = buckets[i];
+		  }
+	  }
+	  buckets = tempBuckets;
+  }
+
+private int hashKeyToGet(String key) {
+	  int i = 0;
+	  int hash = hashValue(key, i);
+	  if(buckets[hash] == null || buckets[hash].k.equals(key))
+		  return hash;
+	  while(!buckets[hash].k.equals(key)) {
+		  hash = hashValue(key, ++i);
+	  }
+	  return hash;
+}
+  
+  private int hashKey(String key) {
+	  int i = 0;
+	  int hash = hashValue(key, i);
+	  if(buckets[hash] == null || buckets[hash].isDefunct())
+		  return hash;
+	  while(buckets[hash] != null && !buckets[hash].isDefunct()) {
+		  hash = hashValue(key, ++i);
+	  }
+	  return hash;
+  }
+  
+  private int hashKey(String key, Entry[] tempBucket) {
+	  int i = 0;
+	  int hash = hashValue(key, i);
+	  if(tempBucket[hash] == null || tempBucket[hash].isDefunct())
+		  return hash;
+	  while(tempBucket[hash] != null && !tempBucket[hash].isDefunct()) {
+		  hash = hashValue(key, ++i);
+	  }
+	  return hash;
+  }
+
+}

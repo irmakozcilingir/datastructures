@@ -1,0 +1,9 @@
+Edges
+x1 x2 1
+x2 x1 1
+
+Inputs
+x1 1
+
+Outputs
+x2 1

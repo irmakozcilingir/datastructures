@@ -1,0 +1,27 @@
+Vertices
+i1 LinFunc
+i2 ReLU
+i3 LinFunc
+m ReLU
+o1 LinFunc
+o2 Sigmoid
+
+Edges
+i1 m -0.1
+i1 o1 1.5
+m o1 -0.5
+i1 o2 0.1
+i2 o2 0.3
+i3 o2 -0.2
+bias o1 -1
+
+Inputs
+i1 2
+i2 -1
+i3 -1
+
+Outputs
+o1 -0.5
+o2 0.5
+
+

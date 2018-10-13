@@ -1,0 +1,114 @@
+Processing: test.txt
+Adding vertex d Sigmoid
+Adding vertex e Sigmoid
+Adding vertex f ReLU
+Adding vertex g ReLU
+Adding edge a d -0.1
+Adding edge a f 0.1
+Adding edge b d -0.2
+Adding edge b e 0.2
+Adding edge c e -1.2
+Adding edge c g -2.
+Adding edge d f 2.
+Adding edge d g 1.2
+Adding edge e f 0.5
+Adding edge f h -0.5
+Adding edge g h -0.5
+Adding edge b h -0.5
+Adding data for input: a
+Adding data for input: b
+Adding data for input: c
+Adding data for output: h
+Input data:
+(a, 1.0)(b, -1.0)(c, 0.5)
+(a, 2.0)(b, 2.0)(c, -1.0)
+(a, -1.0)(b, 1.0)(c, -0.2)
+Output data:
+(h, 1.0)
+(h, -1.0)
+(h, 3.0)
+Before training
+a
+<a, d>, -0.1
+<a, f>, 0.1
+b
+<b, d>, -0.2
+<b, e>, 0.2
+<b, h>, -0.5
+bias
+<bias, d>, 1.0
+<bias, e>, 1.0
+<bias, f>, 1.0
+<bias, g>, 1.0
+<bias, h>, 1.0
+c
+<c, e>, -1.2
+<c, g>, -2.0
+d
+<d, f>, 2.0
+<d, g>, 1.2
+e
+<e, f>, 0.5
+f
+<f, h>, -0.5
+g
+<g, h>, -0.5
+h
+Is the graph cyclic: false
+Topologically sorted vertices: 
+( bias, c, b, e, a, d, g, f, h, )
+Outputs: 
+For the input: 
+(a, 1.0)(b, -1.0)(c, 0.5)
+The output is: 
+(a, 1.0)(b, -1.0)(c, 0.5)(d, 0.7502601055951177)(e, 0.5498339973124778)(f, 3.4000000000000004)(bias, 1.0)(g, 1.32)(h, -0.8600000000000003)
+For the input: 
+(a, 2.0)(b, 2.0)(c, -1.0)
+The output is: 
+(a, 2.0)(b, 2.0)(c, -1.0)(d, 0.598687660112452)(e, 0.9308615796566533)(f, 3.3)(bias, 1.0)(g, 3.48)(h, -3.3899999999999997)
+For the input: 
+(a, -1.0)(b, 1.0)(c, -0.2)
+The output is: 
+(a, -1.0)(b, 1.0)(c, -0.2)(d, 0.7109495026250039)(e, 0.8084546514385326)(f, 3.42)(bias, 1.0)(g, 2.48)(h, -2.45)
+Training finished with error: NaN
+After training
+a
+<a, d>, -0.1
+<a, f>, 0.1
+b
+<b, d>, -0.2
+<b, e>, 0.2
+<b, h>, -0.5
+bias
+<bias, d>, 1.0
+<bias, e>, 1.0
+<bias, f>, 1.0
+<bias, g>, 1.0
+<bias, h>, 1.0
+c
+<c, e>, -1.2
+<c, g>, -2.0
+d
+<d, f>, 2.0
+<d, g>, 1.2
+e
+<e, f>, 0.5
+f
+<f, h>, -0.5
+g
+<g, h>, -0.5
+h
+Outputs: 
+For the input: 
+(a, 1.0)(b, -1.0)(c, 0.5)
+The output is: 
+(a, 1.0)(b, -1.0)(c, 0.5)(d, 0.7502601055951177)(e, 0.5498339973124778)(f, 3.4000000000000004)(bias, 1.0)(g, 1.32)(h, -0.8600000000000003)
+For the input: 
+(a, 2.0)(b, 2.0)(c, -1.0)
+The output is: 
+(a, 2.0)(b, 2.0)(c, -1.0)(d, 0.598687660112452)(e, 0.9308615796566533)(f, 3.3)(bias, 1.0)(g, 3.48)(h, -3.3899999999999997)
+For the input: 
+(a, -1.0)(b, 1.0)(c, -0.2)
+The output is: 
+(a, -1.0)(b, 1.0)(c, -0.2)(d, 0.7109495026250039)(e, 0.8084546514385326)(f, 3.42)(bias, 1.0)(g, 2.48)(h, -2.45)
+

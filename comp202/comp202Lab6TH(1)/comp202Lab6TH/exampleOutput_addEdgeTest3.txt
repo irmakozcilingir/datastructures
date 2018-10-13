@@ -1,0 +1,44 @@
+Processing: addEdgeTest3.txt
+Adding vertex x2 Sigmoid
+Adding edge x1 x2 1
+Adding edge x1 x2 1.5
+Adding edge x2 a1 0.5
+Adding data for input: x1
+Adding data for output: a1
+Input data:
+(x1, 1.0)
+Output data:
+(a1, -1.0)
+Before training
+a1
+bias
+<bias, a1>, 1.0
+<bias, x2>, 1.0
+x1
+<x1, x2>, 1.5
+x2
+<x2, a1>, 0.5
+Is the graph cyclic: false
+Topologically sorted vertices: 
+( x1, bias, x2, a1, )
+Outputs: 
+For the input: 
+(x1, 1.0)
+The output is: 
+(a1, 1.4620709099893783)
+Training finished with error: 9.49945579567288E-4
+After training
+a1
+bias
+<bias, a1>, 0.25766955644625833
+<bias, x2>, 1.0175938224288033
+x1
+<x1, x2>, 1.5175938224288037
+x2
+<x2, a1>, -1.3561300353522001
+Outputs: 
+For the input: 
+(x1, 1.0)
+The output is: 
+(a1, -0.9988826756592413)
+

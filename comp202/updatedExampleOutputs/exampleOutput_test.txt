@@ -1,0 +1,114 @@
+Processing: test.txt
+Adding vertex d Sigmoid
+Adding vertex e Sigmoid
+Adding vertex f ReLU
+Adding vertex g ReLU
+Adding edge a d -0.1
+Adding edge a f 0.1
+Adding edge b d -0.2
+Adding edge b e 0.2
+Adding edge c e -1.2
+Adding edge c g -2.
+Adding edge d f 2.
+Adding edge d g 1.2
+Adding edge e f 0.5
+Adding edge f h -0.5
+Adding edge g h -0.5
+Adding edge b h -0.5
+Adding data for input: a
+Adding data for input: b
+Adding data for input: c
+Adding data for output: h
+Input data:
+(a, 1.0)(b, -1.0)(c, 0.5)
+(a, 2.0)(b, 2.0)(c, -1.0)
+(a, -1.0)(b, 1.0)(c, -0.2)
+Output data:
+(h, 1.0)
+(h, -1.0)
+(h, 3.0)
+Before training
+a
+<a, d>, -0.1
+<a, f>, 0.1
+b
+<b, d>, -0.2
+<b, e>, 0.2
+<b, h>, -0.5
+bias
+<bias, d>, 1.0
+<bias, e>, 1.0
+<bias, f>, 1.0
+<bias, g>, 1.0
+<bias, h>, 1.0
+c
+<c, e>, -1.2
+<c, g>, -2.0
+d
+<d, f>, 2.0
+<d, g>, 1.2
+e
+<e, f>, 0.5
+f
+<f, h>, -0.5
+g
+<g, h>, -0.5
+h
+Is the graph cyclic: false
+Topologically sorted vertices: 
+( bias, c, b, e, a, d, g, f, h, )
+Outputs: 
+For the input: 
+(a, 1.0)(b, -1.0)(c, 0.5)
+The output is: 
+(h, -0.3878746682803076)
+For the input: 
+(a, 2.0)(b, 2.0)(c, -1.0)
+The output is: 
+(h, -3.2906156510940865)
+For the input: 
+(a, -1.0)(b, 1.0)(c, -0.2)
+The output is: 
+(h, -1.9896328670596393)
+Training finished with error: 8.321140563518933E-4
+After training
+a
+<a, d>, -0.5631855906154674
+<a, f>, -1.2081598677376153
+b
+<b, d>, -0.36318885817293967
+<b, e>, 0.20197184043905195
+<b, h>, -0.09414934890541736
+bias
+<bias, d>, 0.634127064019473
+<bias, e>, 0.9661418165924028
+<bias, f>, 0.38514368655425363
+<bias, g>, 0.6005762652541394
+<bias, h>, 0.7923805482952073
+c
+<c, e>, -1.2030080337843496
+<c, g>, -1.8108050940915066
+d
+<d, f>, 1.6220239535098222
+<d, g>, 0.8849236795686514
+e
+<e, f>, 0.11070680848478334
+f
+<f, h>, 1.1625049641662772
+g
+<g, h>, -0.6135472590129906
+h
+Outputs: 
+For the input: 
+(a, 1.0)(b, -1.0)(c, 0.5)
+The output is: 
+(h, 1.001176693950824)
+For the input: 
+(a, 2.0)(b, 2.0)(c, -1.0)
+The output is: 
+(h, -0.9993026889799437)
+For the input: 
+(a, -1.0)(b, 1.0)(c, -0.2)
+The output is: 
+(h, 2.9993295749916027)
+

@@ -1,0 +1,27 @@
+Vertices
+d Sigmoid
+e Sigmoid
+f ReLU
+g ReLU
+
+Edges
+a d -0.1
+a f 0.1
+b d -0.2
+b e 0.2
+c e -1.2
+c g -2.
+d f 2.
+d g 1.2
+e f 0.5
+f h -0.5
+g h -0.5
+b h -0.5
+
+Inputs
+a 1 2 -1
+b -1 2 1
+c 0.5 -1 -0.2
+Outputs
+h 1 -1 3
+

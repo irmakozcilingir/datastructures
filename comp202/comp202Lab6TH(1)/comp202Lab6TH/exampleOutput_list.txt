@@ -1,0 +1,43 @@
+Processing: list.txt
+Adding vertex a1 ReLU
+Adding edge x1 a1 1
+Adding edge a1 a2 1
+Adding data for input: x1
+Adding data for output: a2
+Input data:
+(x1, 1.0)
+Output data:
+(a2, 1.0)
+Before training
+a1
+<a1, a2>, 1.0
+a2
+bias
+<bias, a1>, 1.0
+<bias, a2>, 1.0
+x1
+<x1, a1>, 1.0
+Is the graph cyclic: false
+Topologically sorted vertices: 
+( x1, bias, a1, a2, )
+Outputs: 
+For the input: 
+(x1, 1.0)
+The output is: 
+(a2, 3.0)
+Training finished with error: 9.557220235316545E-4
+After training
+a1
+<a1, a2>, 0.2891228855156473
+a2
+bias
+<bias, a1>, 0.7219554729068159
+<bias, a2>, 0.5836641109181305
+x1
+<x1, a1>, 0.7219554729068159
+Outputs: 
+For the input: 
+(x1, 1.0)
+The output is: 
+(a2, 1.001131809999395)
+
